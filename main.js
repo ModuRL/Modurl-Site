@@ -190,21 +190,39 @@ cd ModuRL
 
 # Train PPO on eight CartPole environments
 cargo run --release -p examples --example ppo_cartpole`;
-    const rustExample = `use burn::tensor::Device;
+    const rustExample = `use burn::{optim::AdamWConfig, tensor::Device};
 use modurl::prelude::*;
 use modurl_gym::classic_control::cartpole::CartPoleV1;
-use modurl_gym::EnvironmentError;
 
-fn main() -> Result<(), EnvironmentError> {
-    let device = Device::flex();
-    let mut env = CartPoleV1::builder().seed(7).build()?;
-    let observation = env.reset()?.observation;
-    let action = env.action_space()
-        .sample_batch(1, &device)?.squeeze_dim::<1>(0);
-    let transition = env.step(action)?;
-    println!("reward: {}", transition.reward);
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let device = Device::flex().autodiff();
+    let env = VectorizedGymWrapper::from(CartPoleV1::builder().build()?);
+    let mut env = DeviceMultiGymWrapper::new(env, Device::flex(), device.clone());
+    let model = |output_size| {
+        MLP::builder()
+            .input_size(4)
+            .output_size(output_size)
+            .options(&device)
+            .build()
+    };
+    let policy = ProbabilisticPolicyModel::new(model(2)?, CategoricalDistribution);
+    let networks = SeparatePPONetwork::builder()
+        .actor_network(policy)
+        .critic_network(model(1)?)
+        .actor_optimizer(AdamWConfig::new().init())
+        .critic_optimizer(AdamWConfig::new().init())
+        .actor_learning_rate(3e-4)
+        .critic_learning_rate(3e-4)
+        .build()?;
+    let mut agent = PPOAgent::builder()
+        .observation_space(env.observation_space())
+        .action_space(env.action_space())
+        .network_info(networks)
+        .build()?;
+    agent.learn(&mut env, 100_000)?;
     Ok(())
-}`;
+}
+`;
     const quickStartPanel = document.querySelector("#quick-code");
     function selectQuickStartTab(rustSelected) {
       document
