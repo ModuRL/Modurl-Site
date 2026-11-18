@@ -317,6 +317,44 @@ p {
   line-height: 1.85;
   margin: 25px 0 29px;
 }
+.hero-words {
+  display: grid;
+  width: max-content;
+  overflow: hidden;
+  line-height: 1.16;
+}
+.hero-word,
+.hero-word-sizer {
+  grid-area: 1 / 1;
+  justify-self: start;
+}
+.hero-word-sizer {
+  visibility: hidden;
+  padding-right: 0.16em;
+}
+.hero-word {
+  opacity: 0;
+}
+.hero-word.is-active {
+  opacity: 1;
+  border-right: 2px solid var(--orange);
+  padding-right: 0.08em;
+  animation: caret-blink 1s step-end infinite;
+}
+.hero-copy > .hero-proof {
+  min-height: 3.6em;
+  max-width: 100%;
+  margin: 18px 0 0;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--orange);
+}
+@keyframes caret-blink {
+  50% {
+    border-color: transparent;
+  }
+}
 .install {
   padding: 12px 15px;
   border: 1px solid var(--line);

@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Modular deep reinforcement learning for Rust. Explicit choices, swappable parts, built on Burn."
+      content="Type-safe, modular, performant reinforcement learning in Rust, built on Burn."
     />
-    <title>ModuRL — Parts that mesh.</title>
+    <title>ModuRL</title>
+    <meta property="og:title" content="ModuRL" />
     <link rel="icon" href="assets/FerrisGears.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -64,21 +65,20 @@
       <section class="hero wrap">
         <div class="hero-copy">
           <div class="eyebrow">Built on Burn</div>
-          <h1>
-            Reinforcement
-            <br />
-            learning,
-            <br />
-            <span class="gradient">
-              built from parts
-              <br />
-              that mesh.
+          <h1 aria-label="Type-safe, modular, performant reinforcement learning in Rust">
+            <span class="hero-words" aria-hidden="true">
+              <span class="hero-word-sizer">Performant</span>
+              <span class="hero-word gradient">Type-safe</span>
+              <span class="hero-word gradient is-active">Modular</span>
+              <span class="hero-word gradient">Performant</span>
             </span>
+            <span aria-hidden="true">reinforcement learning in Rust.</span>
           </h1>
+          <p class="hero-proof" aria-hidden="true">Swap models without rewriting the loop</p>
           <p>
-            ModuRL is a deep reinforcement learning framework for Rust, with
-            training algorithms, environments, models, policy distributions,
-            storage, schedules, and logging.
+            Reinforcement learning that feels like Rust. Bring your own Burn
+            models and environments, catch wiring mistakes when you compile,
+            and train at native speed on CPU, CUDA or Metal.
           </p>
           <div class="actions">
             <a
