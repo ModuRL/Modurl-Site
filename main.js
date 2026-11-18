@@ -6,7 +6,7 @@
     const proofPoints = [
       "Catch wiring mistakes at compile time",
       "Swap models without rewriting the loop",
-      "6,000 transitions/s · Breakout PPO benchmark",
+      "1.6× faster than Stable-Baselines3 · Breakout PPO",
     ];
     const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
     let currentWord = 1;
