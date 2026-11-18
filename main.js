@@ -1,4 +1,68 @@
 (() => {
+  function initializeHeroHeadline() {
+    const labels = ["Type-safe", "Modular", "Performant"];
+    const words = [...document.querySelectorAll(".hero-word")];
+    const proof = document.querySelector(".hero-proof");
+    const proofPoints = [
+      "Catch wiring mistakes at compile time",
+      "Swap models without rewriting the loop",
+      "6,000 transitions/s · Breakout PPO benchmark",
+    ];
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+    let currentWord = 1;
+    let rotationTimer;
+    let typingTimer;
+
+    function showWord(index) {
+      words.forEach((word, wordIndex) => {
+        word.classList.toggle("is-active", wordIndex === index);
+      });
+      proof.textContent = proofPoints[index];
+      currentWord = index;
+    }
+
+    function typeWord(index) {
+      const previous = words[currentWord];
+      function erase() {
+        if (previous.textContent.length) {
+          previous.textContent = previous.textContent.slice(0, -1);
+          typingTimer = setTimeout(erase, 24);
+        } else {
+          words[index].textContent = "";
+          showWord(index);
+          let letters = 0;
+          function type() {
+            words[index].textContent = labels[index].slice(0, ++letters);
+            if (letters < labels[index].length) {
+              typingTimer = setTimeout(type, 45);
+            }
+          }
+          type();
+        }
+      }
+      erase();
+    }
+
+    function updateMotionPreference() {
+      clearInterval(rotationTimer);
+      clearTimeout(typingTimer);
+      words.forEach((word, index) => {
+        word.textContent = labels[index];
+      });
+      showWord(reducedMotion.matches ? 1 : 0);
+      if (!reducedMotion.matches) {
+        rotationTimer = setInterval(() => {
+          typeWord((currentWord + 1) % words.length);
+        }, 2500);
+      }
+    }
+
+    reducedMotion.addEventListener("change", updateMotionPreference);
+    updateMotionPreference();
+  }
+
+  initializeHeroHeadline();
+
   const builderState = {
     algorithm: "PPO",
     network: "Separate",
