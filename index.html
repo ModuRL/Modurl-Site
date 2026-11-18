@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Modular deep reinforcement learning for Rust. Explicit choices, swappable parts, built on Burn."
+    />
+    <title>ModuRL — Parts that mesh.</title>
+    <link rel="icon" href="assets/FerrisGears.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="gears.js" defer></script>
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="#">
+        <img src="assets/FerrisGears.svg" alt="Three orange gear mascots" />
+        ModuRL
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#algorithms">Algorithms</a>
+        <a href="#benchmarks">Benchmarks</a>
+        <a href="https://modurl.github.io/ModuRL/dev/" class="external-link">
+          <span class="link-label">Docs</span>
+          <svg
+            class="link-arrow"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 12 12 4M4 4h8v8" />
+          </svg>
+        </a>
+        <a href="https://github.com/ModuRL/ModuRL" class="external-link">
+          <span class="link-label">GitHub</span>
+          <svg
+            class="link-arrow"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M4 12 12 4M4 4h8v8" />
+          </svg>
+        </a>
+      </nav>
+    </header>
+    <main>
+      <section class="hero wrap">
+        <div class="hero-copy">
+          <div class="eyebrow">Built on Burn</div>
+          <h1>
+            Reinforcement
+            <br />
+            learning,
+            <br />
+            <span class="gradient">
+              built from parts
+              <br />
+              that mesh.
+            </span>
+          </h1>
+          <p>
+            ModuRL is a deep reinforcement learning framework for Rust, with
+            training algorithms, environments, models, policy distributions,
+            storage, schedules, and logging.
+          </p>
+          <div class="actions">
+            <a
+              class="button primary"
+              href="https://modurl.github.io/ModuRL/dev/"
+            >
+              <span class="button-label">Get started</span>
+              <svg
+                class="button-arrow"
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 12 12 4M4 4h8v8" />
+              </svg>
+            </a>
+            <button
+              class="install"
+              id="install"
+              aria-label="Copy cargo add modurl"
+            >
+              <span class="prompt">$</span>
+              cargo add modurl
+              <span id="copy-icon" aria-hidden="true">
+                <svg
+                  class="copy-symbol"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                >
+                  <rect x="5.5" y="5.5" width="8" height="8" rx="1.5" />
+                  <path
+                    d="M10.5 5.5v-2A1.5 1.5 0 0 0 9 2H3.5A1.5 1.5 0 0 0 2 3.5V9A1.5 1.5 0 0 0 3.5 10.5h2"
+                  /></svg
+                ><svg
+                  class="check-symbol"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m3 8 3 3 7-7" />
+                </svg>
+              </span>
+            </button>
+          </div>
+          <span class="sr-only" id="copy-status" role="status"></span>
+        </div>
+        <div class="engine-area">
+          <svg
+            id="gear-engine"
+            viewBox="0 0 580 530"
+            role="img"
+            aria-label="Original ModuRL gear mascots with eyes that track your cursor and blink."
+          >
+            <g id="mascot-float">
+              <svg
+                x="60"
+                y="35"
+                width="460"
+                height="460"
+                id="mascot-Gear_Alltogether"
+                data-name="Gear Alltogether"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 143.11 150.9"
+              >
+                <defs>
+                  <style>
+                    .mascot-cls-1 {
+                      fill: url(#mascot-linear-gradient);
+                    }
+                    .mascot-cls-2 {
+                      fill: url(#mascot-linear-gradient-2);
+                    }
+                    .mascot-cls-3 {
+                      fill: url(#mascot-linear-gradient-3);
+                    }
+                    .mascot-cls-4 {
+                      fill: #fff;
+                    }
+                    .mascot-cls-5 {
+                      fill: url(#mascot-linear-gradient-4);
+                    }
+                    .mascot-cls-6 {
+                      fill: url(#mascot-linear-gradient-5);
+                    }
+                    .mascot-cls-7 {
+                      fill: url(#mascot-linear-gradient-6);
+                    }
+                    .mascot-cls-8 {
+                      fill: url(#mascot-linear-gradient-7);
+                    }
+                    .mascot-cls-9 {
+                      fill: url(#mascot-linear-gradient-8);
+                    }
+                    .mascot-cls-10 {
+                      fill: url(#mascot-linear-gradient-9);
+                    }
+                  </style>
+                  <linearGradient
+                    id="mascot-linear-gradient"
+                    x1="-37.3"
+                    y1="195.54"
+                    x2="38.2"
+                    y2="195.54"
+                    gradientTransform="translate(318.96 -7.52) rotate(57.98)"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#f74c00" />
+                    <stop offset="0.33" stop-color="#f74c00" />
+                    <stop offset="1" stop-color="#f49600" />
+                  </linearGradient>
+                  <linearGradient
+                    id="mascot-linear-gradient-2"
+                    x1="3.24"
+                    y1="500.64"
+                    x2="3.47"
+                    y2="500.64"
+                    gradientTransform="matrix(-2.51, -71.21, -71.21, 2.51, 35830.61, -910.97)"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0" stop-color="#cc3a00" />
+                    <stop offset="0.15" stop-color="#cc3a00" />
+                    <stop offset="0.74" stop-color="#f74c00" />
+                    <stop offset="1" stop-color="#f74c00" />
+                  </linearGradient>
+                  <linearGradient
+                    id="mascot-linear-gradient-3"
+                    x1="3.65"
+                    y1="499.52"
+                    x2="3.91"
+                    y2="499.52"
+                    gradientTransform="matrix(-2.25, -63.7, -63.7, 2.25, 31965.84, -771.69)"
+                    xlink:href="#mascot-linear-gradient-2"
+                  />
+                  <linearGradient
+                    id="mascot-linear-gradient-4"
+                    x1="59.16"
+                    y1="150.78"
+                    x2="134.65"
+                    y2="150.78"
+                    gradientTransform="matrix(1, -0.03, 0.03, 1, 103.35, -4.45)"
+                    xlink:href="#mascot-linear-gradient"
+                  />
+                  <linearGradient
+                    id="mascot-linear-gradient-5"
+                    x1="2.38"
+                    y1="499.42"
+                    x2="2.62"
+                    y2="499.42"
+                    gradientTransform="matrix(-62.86, -33.57, -33.57, 62.86, 17143.4, -31173.83)"
+                    xlink:href="#mascot-linear-gradient-2"
+                  />
+                  <linearGradient
+                    id="mascot-linear-gradient-6"
+                    x1="2.69"
+                    y1="498.16"
+                    x2="2.95"
+                    y2="498.16"
+                    gradientTransform="matrix(-56.22, -30.02, -30.02, 56.22, 15324.33, -27761.08)"
+                    xlink:href="#mascot-linear-gradient-2"
+                  />
+                  <linearGradient
+                    id="mascot-linear-gradient-7"
+                    x1="-7.73"
+                    y1="171.07"
+                    x2="67.77"
+                    y2="171.07"
+                    gradientTransform="translate(306.05 213.11) rotate(115.85)"
+                    xlink:href="#mascot-linear-gradient"
+                  />
+                  <linearGradient
+                    id="mascot-linear-gradient-8"
+                    x1="3.05"
+                    y1="500.14"
+                    x2="3.29"
+                    y2="500.14"
+                    gradientTransform="matrix(58.97, -40, -40, -58.97, 19955.54, 29806.88)"
+                    xlink:href="#mascot-linear-gradient-2"
+                  />
+                  <linearGradient
+                    id="mascot-linear-gradient-9"
+                    x1="3.44"
+                    y1="498.96"
+                    x2="3.7"
+                    y2="498.96"
+                    gradientTransform="matrix(52.75, -35.78, -35.78, -52.75, 17782.38, 26607.93)"
+                    xlink:href="#mascot-linear-gradient-2"
+                  />
+                </defs>
+                <path
+                  class="mascot-cls-1"
+                  d="M169.67,72.42l12.83-2.81c2.3.09,4.53,3.09,5.21,4.34s2.59,4.34,1.6,6.56l-8.12,10.21,1.24,7.84,8.85,9.7c1.07,2-.41,5.47-1.15,6.69s-2.47,4.42-4.89,4.67l-12.89-1.93-6.18,5-4,12.52c-1.24,1.94-4.95,2.37-6.37,2.34s-5.06.07-6.49-1.9l-4.77-12.13-7.41-2.85-12.83,2.82c-2.31-.1-4.53-3.1-5.22-4.35s-2.59-4.34-1.6-6.56l8.12-10.21-1.23-7.84-8.86-9.7c-1.06-2,.42-5.47,1.16-6.69s2.46-4.41,4.88-4.66l12.9,1.92,6.18-5,4-12.52c1.24-1.94,4.94-2.37,6.37-2.34s5.06-.07,6.48,1.9l4.78,12.13"
+                  transform="translate(-100.29 -55.54)"
+                />
+                <g id="mascot-Layer-1">
+                  <path
+                    d="M142.71,107.57a2.58,2.58,0,0,1-.21-.18L154.09,106c-9.92-12.17-17.17-1.94-17.94-.8l.1,2.57Z"
+                    transform="translate(-100.29 -55.54)"
+                  />
+                  <path
+                    d="M166.91,106.58l.2-.19-11.2-.42c9-13.36,16.53-3.27,17.38-2.18l.09,2.57Z"
+                    transform="translate(-100.29 -55.54)"
+                  />
+                  <path
+                    class="mascot-cls-2"
+                    d="M182.43,98.56s.81.08-6.91,5.67l-2.18.6S165.71,92,156.07,107.1c0,0,3.1-1.94,11.65,0a14.14,14.14,0,0,1-11.54,6.19s7.84,8.78,18.84-4.68a14.67,14.67,0,0,0,9.66-7.58Z"
+                    transform="translate(-100.29 -55.54)"
+                  />
+                  <path
+                    class="mascot-cls-3"
+                    d="M136.38,110.79C148,124.65,152.85,113,152.85,113A20.55,20.55,0,0,1,142,108.54c7.45-1.21,11.77-1.44,11.77-1.44-10.48-12.87-18.19-.61-18.19-.61-2-.67-8.34-1.57-10-4.13l-3.39,4.27C126.47,110.44,131.94,109.58,136.38,110.79Z"
+                    transform="translate(-100.29 -55.54)"
+                  />
+                </g>
+                <g id="mascot-Layer-1-2" data-name="Layer-1">
+                  <g class="mascot-eye">
+                    <path
+                      d="M158.88,80.41s4-4.67,8.25-.29c0,0,3.46,5.91.32,9,0,0-5.16,4.4-8.25.29,0,0-3.66-3.19-.32-9"
+                      transform="translate(-100.29 -55.54)"
+                    />
+                    <path
+                      class="mascot-cls-4"
+                      d="M163.72,81.92c.06,1.76-.93,3.22-2.21,3.27s-2.37-1.35-2.43-3.11.93-3.22,2.21-3.27,2.36,1.35,2.43,3.11"
+                      transform="translate(-100.29 -55.54)"
+                    />
+                  </g>
+                  <g class="mascot-eye">
+                    <path
+                      d="M140.41,79.82s7-3.38,9.15,3.55c0,0,2.31,8.08-5.51,8.82,0,0-10.06-1.57-3.64-12.37"
+                      transform="translate(-100.29 -55.54)"
+                    />
+                    <path
+                      class="mascot-cls-4"
+                      d="M144.07,82.73c.07,1.81-.95,3.32-2.27,3.37s-2.44-1.39-2.5-3.21.95-3.32,2.27-3.37,2.44,1.39,2.5,3.21"
+                      transform="translate(-100.29 -55.54)"
+                    />
+                  </g>
+                </g>
+                <path
+                  class="mascot-cls-5"
+                  d="M192.49,116.87l4-12.51c1.24-1.94,4.95-2.36,6.38-2.33s5-.06,6.48,1.91l4.75,12.14,7.4,2.87,12.84-2.79c2.3.11,4.52,3.11,5.2,4.36s2.58,4.35,1.59,6.57L233,137.27l1.21,7.85,8.84,9.72c1.06,2-.43,5.47-1.17,6.68s-2.48,4.41-4.9,4.66l-12.89-2-6.18,5-4,12.51c-1.24,1.95-4.94,2.36-6.37,2.33s-5.06.06-6.48-1.91L196.29,170l-7.4-2.87-12.84,2.79c-2.3-.1-4.52-3.11-5.21-4.35s-2.58-4.35-1.58-6.57l8.14-10.19L176.19,141l-8.84-9.73c-1.06-2,.43-5.46,1.17-6.68s2.47-4.41,4.89-4.66l12.9,2"
+                  transform="translate(-100.29 -55.54)"
+                />
+                <g id="mascot-Layer-1-3" data-name="Layer-1">
+                  <path
+                    d="M209.37,157.83l-.26.09,4.63-10.71c-15.5,2.48-10.29,13.88-9.69,15.12l2.27,1.21Z"
+                    transform="translate(-100.29 -55.54)"
+                  />
+                  <path
+                    d="M220.66,136.4c0-.17-.07-.27-.07-.27l-6,9.48c-7-14.51,5.47-15.94,6.84-16.13l2.26,1.21Z"
+                    transform="translate(-100.29 -55.54)"
+                  />
+                  <path
+                    class="mascot-cls-6"
+                    d="M221.5,119s.48-.66,1.44,8.83l-.58,2.19s-14.91.16-6.7,16.07c0,0-.13-3.66,5.85-10.08a14.15,14.15,0,0,1-.44,13.09s11.53-2.37,5.41-18.64a14.7,14.7,0,0,0-1.71-12.17Z"
+                    transform="translate(-100.29 -55.54)"
+                  />
+                  <path
+                    class="mascot-cls-7"
+                    d="M209,164.92c17.81-3.09,10.2-13.12,10.2-13.12a20.6,20.6,0,0,1-9.31,7.12c2.68-7.06,4.65-10.91,4.65-10.91-16.38,2.61-9.65,15.42-9.65,15.42-1.61,1.44-5.54,6.43-8.57,6.56l2,5.08C203.7,173.32,205.7,168.15,209,164.92Z"
+                    transform="translate(-100.29 -55.54)"
+                  />
+                </g>
+                <g id="mascot-Layer-1-4" data-name="Layer-1">
+                  <g class="mascot-eye">
+                    <path
+                      d="M194,130.21s-2-5.77,3.9-7.28c0,0,6.84,0,8,4.26,0,0,1.23,6.67-3.89,7.28,0,0-4.59,1.57-8-4.26"
+                      transform="translate(-100.29 -55.54)"
+                    />
+                    <path
+                      class="mascot-cls-4"
+                      d="M197.72,126.79c1.55.83,2.32,2.41,1.72,3.54s-2.35,1.38-3.91.55-2.32-2.42-1.72-3.55,2.35-1.37,3.91-.54"
+                      transform="translate(-100.29 -55.54)"
+                    />
+                  </g>
+                  <g class="mascot-eye">
+                    <path
+                      d="M184.21,145.89s.57-7.72,7.66-6.13c0,0,8.15,2.06,4.86,9.19,0,0-6.41,7.92-12.52-3.06"
+                      transform="translate(-100.29 -55.54)"
+                    />
+                    <path
+                      class="mascot-cls-4"
+                      d="M188.56,144.18c1.6.86,2.4,2.49,1.77,3.66s-2.42,1.41-4,.56-2.4-2.5-1.78-3.66,2.43-1.42,4-.56"
+                      transform="translate(-100.29 -55.54)"
+                    />
+                  </g>
+                </g>
+                <path
+                  class="mascot-cls-8"
+                  d="M168.08,166.47l9.21,9.37c1.15,2-.21,5.48-.9,6.72s-2.3,4.51-4.71,4.84l-13-1.44-6,5.21-3.5,12.66c-1.17,2-4.86,2.56-6.28,2.58s-5,.26-6.55-1.66l-5.23-11.94-7.51-2.58L111,193.52c-2.31,0-4.64-2.92-5.38-4.14s-2.74-4.25-1.83-6.51l7.73-10.49-1.52-7.8-9.21-9.36c-1.15-2,.21-5.48.9-6.73s2.3-4.5,4.71-4.84l13,1.45,6-5.22,3.5-12.66c1.17-2,4.86-2.55,6.28-2.58s5-.26,6.55,1.66l5.23,12,7.5,2.57,12.72-3.29c2.31,0,4.64,2.93,5.37,4.15s2.75,4.24,1.84,6.5l-7.73,10.5"
+                  transform="translate(-100.29 -55.54)"
+                />
+                <g id="mascot-Layer-1-5" data-name="Layer-1">
+                  <path
+                    d="M124,162.33c0-.17,0-.27,0-.27l7.32,9.09c5-14.88-7.49-15.57-8.87-15.62L120.35,157Z"
+                    transform="translate(-100.29 -55.54)"
+                  />
+                  <path
+                    d="M137.69,182.3l.27.07-5.6-9.71c16.11.54,11.55,12.26,11.09,13.55l-2.13,1.45Z"
+                    transform="translate(-100.29 -55.54)"
+                  />
+                  <path
+                    class="mascot-cls-9"
+                    d="M152.73,191.17s.37.73-8.47-2.83l-1.67-1.53s6.8-13.28-11.1-13.42c0,0,3.29,1.59,6.19,9.87a14.15,14.15,0,0,1-11.38-6.48s-3.27,11.3,14,13.46a14.69,14.69,0,0,0,11.56,4.16Z"
+                    transform="translate(-100.29 -55.54)"
+                  />
+                  <path
+                    class="mascot-cls-10"
+                    d="M117.89,158.68c-5.56,17.2,6.87,15.13,6.87,15.13a20.59,20.59,0,0,1-2-11.55c5,5.66,7.49,9.2,7.49,9.2,5.31-15.72-9.16-15.73-9.16-15.73-.53-2.09-3.11-7.89-1.81-10.63l-5.42-.61C112.91,150.1,116.55,154.28,117.89,158.68Z"
+                    transform="translate(-100.29 -55.54)"
+                  />
+                </g>
+                <g id="mascot-Layer-1-6" data-name="Layer-1">
+                  <g class="mascot-eye">
+                    <path
+                      d="M155.58,161.58s6.06.88,4.64,6.83c0,0-3.17,6.07-7.49,5.08,0,0-6.47-2-4.63-6.84,0,0,.75-4.79,7.48-5.07"
+                      transform="translate(-100.29 -55.54)"
+                    />
+                    <path
+                      class="mascot-cls-4"
+                      d="M156.88,166.48c-1.46,1-3.22.93-3.94-.13s-.12-2.72,1.34-3.71,3.22-.93,3.94.13.11,2.72-1.34,3.71"
+                      transform="translate(-100.29 -55.54)"
+                    />
+                  </g>
+                  <g class="mascot-eye">
+                    <path
+                      d="M146.26,145.63s6.57,4.1,1.86,9.63c0,0-5.62,6.26-10.4,0,0,0-4-9.35,8.54-9.65"
+                      transform="translate(-100.29 -55.54)"
+                    />
+                    <path
+                      class="mascot-cls-4"
+                      d="M145.75,150.27c-1.5,1-3.32,1-4.07-.13s-.12-2.81,1.38-3.83,3.33-.95,4.07.14.12,2.8-1.38,3.82"
+                      transform="translate(-100.29 -55.54)"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </g>
+          </svg>
+        </div>
+      </section>
+      <section class="integrations wrap" aria-label="Ecosystem">
+        <div class="integration-group">
+          <h2>Backends</h2>
+          <ul>
+            <li>CUDA</li>
+            <li>Metal</li>
+            <li>ndarray</li>
+          </ul>
+        </div>
+        <div class="integration-group">
+          <h2>Environments</h2>
+          <ul>
+            <li>Classic control</li>
+            <li>Box2D</li>
+            <li>MuJoCo</li>
+            <li>Atari</li>
+          </ul>
+        </div>
+      </section>
+      <section class="section wrap reveal" id="builder">
+        <div class="section-heading">
+          <h2>Build an agent</h2>
+          <p>
+            Select an algorithm, and for PPO or A2C a network topology, to see
+            an assembly example.
+          </p>
+        </div>
+        <div class="builder panel">
+          <div class="builder-controls">
+            <fieldset>
+              <legend>Algorithm</legend>
+              <div class="choices" data-choice="algorithm">
+                <button aria-pressed="true">PPO</button>
+                <button aria-pressed="false">A2C</button>
+                <button aria-pressed="false">SAC</button>
+                <button aria-pressed="false">DQN</button>
+                <button aria-pressed="false">TD3</button>
+              </div>
+            </fieldset>
+            <fieldset id="network-options">
+              <legend>Network</legend>
+              <div class="choices" data-choice="network">
+                <button aria-pressed="true">Separate</button>
+                <button aria-pressed="false">Shared</button>
+              </div>
+            </fieldset>
+          </div>
+          <div class="code-side">
+            <div class="code-title">
+              <span>
+                <i class="file-dot"></i>
+                your_agent.rs
+              </span>
+              <span>RUST</span>
+            </div>
+            <pre><code id="builder-code" aria-live="polite">// CartPole · separate models · PPO
+use burn::tensor::Device;
+use modurl::prelude::*;
+use modurl_gym::classic_control::cartpole::CartPoleV1;
+
+let device = Device::flex().autodiff();
+let env = CartPoleV1::builder().seed(7).build()?;
+let env = VectorizedGymWrapper::from(env);
+let mut env = DeviceMultiGymWrapper::new(env, Device::flex(), device.clone());
+let observation_space = env.observation_space();
+let action_space = env.action_space();
+// actor_model, critic and optimizers: setup omitted; see the guide.
+let policy = ProbabilisticPolicyModel::new(
+    actor_model,
+    CategoricalDistribution,
+);
+
+let networks = SeparatePPONetwork::builder()
+    .actor_network(policy)
+    .critic_network(critic)
+    .actor_optimizer(actor_optimizer)
+    .critic_optimizer(critic_optimizer)
+    .actor_learning_rate(3e-4)
+    .critic_learning_rate(3e-4)
+    .build()?;
+
+let mut agent = PPOAgent::builder()
+    .observation_space(observation_space)
+    .action_space(action_space)
+    .network_info(networks)
+    .batch_size(2_048)
+    .mini_batch_size(64)
+    .clip_range(ConstantSchedule::new(0.2))
+    .training_horizon(100_000)
+    .build()?;
+
+agent.learn(&amp;mut env, 100_000)?;</code></pre>
+            <div class="code-footer">
+              Assembly excerpt; prerequisite setup is described in the guide.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section wrap reveal" id="algorithms">
+        <div class="split-heading">
+          <div><h2>Algorithms</h2></div>
+          <p>Implementations for on-policy and off-policy training.</p>
+        </div>
+        <div class="algorithm-grid">
+          <article>
+            <a href="https://modurl.github.io/ModuRL/dev/ppo.html">
+              <h3>
+                <span class="link-label">PPO</span>
+                <svg
+                  class="link-arrow"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 12 12 4M4 4h8v8" />
+                </svg>
+              </h3>
+              <p>Clipped policy optimization</p>
+            </a>
+          </article>
+          <article>
+            <a href="https://modurl.github.io/ModuRL/dev/a2c.html">
+              <h3>
+                <span class="link-label">A2C</span>
+                <svg
+                  class="link-arrow"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 12 12 4M4 4h8v8" />
+                </svg>
+              </h3>
+              <p>Advantage actor-critic</p>
+            </a>
+          </article>
+          <article>
+            <a href="https://modurl.github.io/ModuRL/dev/sac.html">
+              <h3>
+                <span class="link-label">SAC</span>
+                <svg
+                  class="link-arrow"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 12 12 4M4 4h8v8" />
+                </svg>
+              </h3>
+              <p>Entropy-regularized actor-critic</p>
+            </a>
+          </article>
+          <article>
+            <a href="https://modurl.github.io/ModuRL/dev/ddpg.html">
+              <h3>
+                <span class="link-label">DDPG</span>
+                <svg
+                  class="link-arrow"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 12 12 4M4 4h8v8" />
+                </svg>
+              </h3>
+              <p>Deterministic policy gradients</p>
+            </a>
+          </article>
+          <article>
+            <a href="https://modurl.github.io/ModuRL/dev/td3.html">
+              <h3>
+                <span class="link-label">TD3</span>
+                <svg
+                  class="link-arrow"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 12 12 4M4 4h8v8" />
+                </svg>
+              </h3>
+              <p>Twin delayed policy updates</p>
+            </a>
+          </article>
+          <article>
+            <a href="https://modurl.github.io/ModuRL/dev/dqn.html">
+              <h3>
+                <span class="link-label">DQN</span>
+                <svg
+                  class="link-arrow"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 12 12 4M4 4h8v8" />
+                </svg>
+              </h3>
+              <p>Deep action-value learning</p>
+            </a>
+          </article>
+          <article>
+            <a href="https://modurl.github.io/ModuRL/dev/ddqn.html">
+              <h3>
+                <span class="link-label">Double DQN</span>
+                <svg
+                  class="link-arrow"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 12 12 4M4 4h8v8" />
+                </svg>
+              </h3>
+              <p>Decoupled action selection & evaluation</p>
+            </a>
+          </article>
+        </div>
+      </section>
+      <section class="section wrap reveal" id="benchmarks">
+        <div class="benchmark-layout">
+          <div>
+            <h2>Benchmarks</h2>
+            <p>
+              End-to-end Breakout PPO throughput.
+              <br />
+              40,960 transitions with matched preprocessing and training
+              workloads.
+            </p>
+            <a
+              class="text-link external-link"
+              href="https://github.com/ModuRL/ModuRL/tree/master/crates/benches"
+            >
+              <span class="link-label">Benchmark methodology</span>
+              <svg
+                class="link-arrow"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M4 12 12 4M4 4h8v8" />
+              </svg>
+            </a>
+          </div>
+          <div class="panel benchmark-panel">
+            <div class="code-title">
+              <span>BREAKOUT / PPO</span>
+              <span>TRANSITIONS / SEC ↑</span>
+            </div>
+            <div class="bars">
+              <div class="bar-row">
+                <div>
+                  <strong>ModuRL</strong>
+                  <b>6,000<span> /s</span></b>
+                </div>
+                <div class="track">
+                  <i style="--width: 100%" class="brand-bar"></i>
+                </div>
+              </div>
+              <div class="bar-row">
+                <div>
+                  <strong>CleanRL</strong>
+                  <b>4,178<span> /s</span></b>
+                </div>
+                <div class="track"><i style="--width: 69.63%"></i></div>
+              </div>
+              <div class="bar-row">
+                <div>
+                  <strong>Stable-Baselines3</strong>
+                  <b>3,737<span> /s</span></b>
+                </div>
+                <div class="track"><i style="--width: 62.28%"></i></div>
+              </div>
+            </div>
+            <p class="benchmark-note">
+              CUDA · Throughput only, not final reward or sample efficiency.
+              Emulator versions differ. See the benches README for methodology
+              and fairness controls.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section wrap reveal" id="quickstart">
+        <div class="section-heading">
+          <h2>Quick start</h2>
+          <p>Train PPO on eight CartPole environments.</p>
+        </div>
+        <div class="quick-code panel">
+          <div class="code-title">
+            <div class="tabs" role="tablist" aria-label="Quick start code">
+              <button
+                id="terminal-tab"
+                role="tab"
+                aria-selected="true"
+                aria-controls="quick-code"
+              >
+                Terminal
+              </button>
+              <button
+                id="rust-tab"
+                role="tab"
+                aria-selected="false"
+                aria-controls="quick-code"
+              >
+                Rust
+              </button>
+            </div>
+          </div>
+          <pre
+            id="quick-code"
+            role="tabpanel"
+            aria-labelledby="terminal-tab"
+          ><code>git clone https://github.com/ModuRL/ModuRL.git
+cd ModuRL
+cargo run --release -p examples --example ppo_cartpole</code></pre>
+          <div class="code-footer">CPU by default.</div>
+        </div>
+        <p class="quick-note">
+          Requires a Rust toolchain with edition 2024 support.
+          <a href="https://modurl.github.io/ModuRL/dev/" class="external-link">
+            <span class="link-label">Read the getting started guide</span>
+            <svg
+              class="link-arrow"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 12 12 4M4 4h8v8" />
+            </svg>
+          </a>
+        </p>
+      </section>
+      <section class="cta wrap reveal">
+        <img
+          src="assets/FerrisGears.svg"
+          alt="ModuRL gear mascots"
+          width="112"
+          height="112"
+        />
+        <h2>
+          Start training
+          <span class="gradient">in Rust.</span>
+        </h2>
+        <div class="actions">
+          <a class="button primary" href="https://modurl.github.io/ModuRL/dev/">
+            <span class="button-label">Build your first agent</span>
+            <svg
+              class="button-arrow"
+              width="14"
+              height="14"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 12 12 4M4 4h8v8" />
+            </svg>
+          </a>
+          <a class="button" href="https://github.com/ModuRL/ModuRL">
+            <span class="button-label">Explore on GitHub</span>
+            <svg
+              class="button-arrow"
+              width="14"
+              height="14"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 12 12 4M4 4h8v8" />
+            </svg>
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer class="wrap">
+      <div class="footer-top">
+        <a class="brand" href="#">
+          <img src="assets/FerrisGears.svg" alt="" />
+          ModuRL
+        </a>
+        <div>
+          <a href="https://modurl.github.io/ModuRL/dev/" class="external-link">
+            <span class="link-label">Guide</span>
+            <svg
+              class="link-arrow"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 12 12 4M4 4h8v8" />
+            </svg>
+          </a>
+          <a href="https://docs.rs/modurl" class="external-link">
+            <span class="link-label">docs.rs</span>
+            <svg
+              class="link-arrow"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 12 12 4M4 4h8v8" />
+            </svg>
+          </a>
+          <a href="https://crates.io/crates/modurl" class="external-link">
+            <span class="link-label">crates.io</span>
+            <svg
+              class="link-arrow"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 12 12 4M4 4h8v8" />
+            </svg>
+          </a>
+          <a href="https://github.com/ModuRL/ModuRL" class="external-link">
+            <span class="link-label">GitHub</span>
+            <svg
+              class="link-arrow"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 12 12 4M4 4h8v8" />
+            </svg>
+          </a>
+          <a
+            href="https://github.com/ModuRL/ModuRL/blob/master/LICENSE"
+            class="external-link"
+          >
+            <span class="link-label">MIT License</span>
+            <svg
+              class="link-arrow"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 12 12 4M4 4h8v8" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>
+          <i class="status-dot"></i>
+          Early development · Public APIs may change.
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>
