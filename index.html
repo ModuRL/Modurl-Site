@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Type-safe, modular, performant reinforcement learning in Rust, built on Burn."
+      content="ModuRL is a type-safe, modular, performant reinforcement learning framework for Rust, built on Burn."
     />
     <title>ModuRL – Reinforcement learning in Rust</title>
     <meta property="og:title" content="ModuRL – Reinforcement learning in Rust" />
@@ -13,25 +13,59 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://modurl.dev/" />
     <meta property="og:site_name" content="ModuRL" />
-    <meta property="og:description" content="Type-safe, modular, performant reinforcement learning in Rust, built on Burn." />
+    <meta property="og:description" content="ModuRL is a type-safe, modular, performant reinforcement learning framework for Rust, built on Burn." />
     <meta property="og:image" content="https://modurl.dev/assets/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="ModuRL — Type-safe, modular, performant reinforcement learning in Rust, with the orange Ferris gear mascots." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ModuRL – Reinforcement learning in Rust" />
-    <meta name="twitter:description" content="Type-safe, modular, performant reinforcement learning in Rust, built on Burn." />
+    <meta name="twitter:description" content="ModuRL is a type-safe, modular, performant reinforcement learning framework for Rust, built on Burn." />
     <meta name="twitter:image" content="https://modurl.dev/assets/og-image.png" />
     <meta name="theme-color" content="#0c0a09" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "SoftwareSourceCode",
-        "name": "ModuRL",
-        "description": "Type-safe, modular, performant reinforcement learning in Rust, built on Burn.",
-        "codeRepository": "https://github.com/ModuRL/ModuRL",
-        "programmingLanguage": "Rust",
-        "url": "https://modurl.dev/"
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://modurl.dev/#organization",
+            "name": "ModuRL",
+            "url": "https://modurl.dev/",
+            "logo": "https://modurl.dev/assets/FerrisGears.svg",
+            "sameAs": [
+              "https://github.com/ModuRL",
+              "https://crates.io/crates/modurl",
+              "https://docs.rs/modurl",
+              "https://docs.modurl.dev/"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://modurl.dev/#website",
+            "name": "ModuRL",
+            "alternateName": ["modurl", "ModuRL RL"],
+            "url": "https://modurl.dev/",
+            "publisher": {"@id": "https://modurl.dev/#organization"}
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://modurl.dev/#software",
+            "name": "ModuRL",
+            "alternateName": "modurl",
+            "description": "ModuRL is a type-safe, modular, performant reinforcement learning framework for Rust, built on Burn.",
+            "codeRepository": "https://github.com/ModuRL/ModuRL",
+            "programmingLanguage": "Rust",
+            "url": "https://modurl.dev/",
+            "author": {"@id": "https://modurl.dev/#organization"},
+            "sameAs": [
+              "https://github.com/ModuRL",
+              "https://crates.io/crates/modurl",
+              "https://docs.rs/modurl",
+              "https://docs.modurl.dev/"
+            ]
+          }
+        ]
       }
     </script>
     <link rel="icon" href="assets/FerrisGears.svg" />
@@ -90,7 +124,8 @@
       <section class="hero wrap">
         <div class="hero-copy">
           <div class="eyebrow">Built on Burn</div>
-          <h1 aria-label="Type-safe, modular, performant reinforcement learning in Rust">
+          <h1 aria-label="ModuRL: Type-safe, modular, performant reinforcement learning in Rust">
+            <span class="hero-brand">ModuRL</span>
             <span class="hero-words" aria-hidden="true">
               <span class="hero-word-sizer">Performant</span>
               <span class="hero-word gradient">Type-safe</span>

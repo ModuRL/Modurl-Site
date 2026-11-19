@@ -317,6 +317,14 @@ p {
   line-height: 1.85;
   margin: 25px 0 29px;
 }
+.hero-brand {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--orange);
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
 .hero-words {
   display: grid;
   width: max-content;
